@@ -15,10 +15,14 @@
 # production
 /build
 
+# codegen
+schema.graphql
+schema.ts
+
 # misc
 .DS_Store
 *.pem
-
+.idea
 # debug
 npm-debug.log*
 yarn-debug.log*

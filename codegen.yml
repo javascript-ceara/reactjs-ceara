@@ -1,0 +1,21 @@
+schema:
+  - https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}:
+      headers:
+        Authorization: "Bearer ${CONTENTFUL_DELIVERY_ACCESS_TOKEN}"
+generates:
+  "schema.ts":
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      avoidOptionals: true
+      skipTypename: true
+      immutableTypes: true
+      maybeValue: T
+  "schema.graphql":
+    plugins:
+      - schema-ast
+documents: ["./api"]
+
+hooks:
+  afterAllFileWrite: ["prettier --write"]
