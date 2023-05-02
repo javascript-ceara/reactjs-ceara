@@ -8,4 +8,5 @@ export type Event = {
   resume: EventType["resume"];
   placeName: EventType["placeName"];
   placeAddress: EventType["placeAddress"];
+  presentationCollection: EventType["presentationCollection"];
 };

@@ -3,8 +3,11 @@ import {
   GetPresentationsByIdsQuery,
   GetPresentationsByIdsQueryVariables,
 } from "../../schema";
+import { EnumPresentations } from "@/types/presentation";
 
-export const getPresentationsByIds = async (ids: String[]) => {
+export const getPresentationsByIds = async (
+  ids: String[]
+): Promise<EnumPresentations> => {
   const response = await fetchGraphQL<GetPresentationsByIdsQuery>(
     /* GraphQL */ `
       query getPresentationsByIds($ids: [String]!) {
@@ -14,6 +17,7 @@ export const getPresentationsByIds = async (ids: String[]) => {
               id
             }
             title
+            description
             author {
               sys {
                 id
@@ -26,5 +30,5 @@ export const getPresentationsByIds = async (ids: String[]) => {
     { variables: { ids } }
   );
 
-  response.data.presentationCollection?.items;
+  return response.data.presentationCollection.items;
 };

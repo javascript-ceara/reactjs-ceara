@@ -4,8 +4,16 @@ import { Popover, Transition } from "@headlessui/react";
 import MapPinIcon from "@heroicons/react/24/outline/MapPinIcon";
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon";
 import UserCircleIcon from "@heroicons/react/24/outline/UserCircleIcon";
+import Image from "next/image";
+import { Event } from "@/types/event";
+import { EnumPresentations } from "@/types/presentation";
 
-export const NextEventSection = ({ event }) => {
+type Props = {
+  event: Event;
+  presentations: EnumPresentations;
+};
+
+export const NextEventSection = ({ event, presentations }: Props) => {
   return (
     <section className="bg-gray-50">
       <div className="space-y-8 px-8 py-16 md:mx-auto md:max-w-3xl md:px-0">
@@ -82,42 +90,29 @@ export const NextEventSection = ({ event }) => {
             </span>
           </h3>
           <ul className="divide-y-2">
-            <li className="space-y-2 py-4">
-              <p className="flex items-center space-x-1 text-slate-600">
-                <UserCircleIcon className="h-10 w-10" />
-                <span>Cicero Viana</span>
-              </p>
-              <div className="space-y-1">
-                <h4 className="lg text-lg text-cyan-600">
-                  Fundamentos de ReactJS
-                </h4>
-                <p className="text-sm text-slate-600">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
-                </p>
-              </div>
-            </li>
-            <li className="space-y-2 py-4">
-              <p className="flex items-center space-x-1 text-slate-600">
-                <UserCircleIcon className="h-10 w-10" />
-                <span>Cicero Viana</span>
-              </p>
-              <div className="space-y-1">
-                <h4 className="text-lg text-cyan-600">
-                  Fundamentos de ReactJS
-                </h4>
-                <p className="text-sm text-slate-600">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
-                </p>
-              </div>
-            </li>
+            {presentations.map(({ title, description, author, sys }) => {
+              return (
+                <li key={sys.id} className="space-y-2 py-4">
+                  <div className="flex items-center space-x-2 text-slate-600">
+                    <div className="relative flex h-[34px] w-[34px]">
+                      <Image
+                        className="rounded-full object-cover"
+                        src={author.avatar.url}
+                        fill
+                        loader={() => author.avatar.url}
+                        alt={`avatar do autor ${author.name}`}
+                      />
+                    </div>
+                    {/* <UserCircleIcon className="h-10 w-10" /> */}
+                    <span>{author.name}</span>
+                  </div>
+                  <div className="space-y-1">
+                    <h4 className="text-lg text-cyan-600">{title}</h4>
+                    <p className="text-sm text-slate-600">{description}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
           <div className="space-x-4 text-center">
             <Link href="#" className="font-semibold text-cyan-600">

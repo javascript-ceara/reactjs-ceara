@@ -18,6 +18,13 @@ export const getNextEvent = async (): Promise<Event> => {
           resume
           placeName
           placeAddress
+          presentationCollection {
+            items {
+              sys {
+                id
+              }
+            }
+          }
         }
       }
     }
