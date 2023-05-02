@@ -1,12 +1,12 @@
-import { Event as EventType, Sys } from "../schema";
+import { Presentation } from "./presentation";
 
-export type Event = {
-  sys: Pick<Sys, "id">;
-  title: EventType["title"];
-  startDate: EventType["startDate"];
-  endDate: EventType["endDate"];
-  resume: EventType["resume"];
-  placeName: EventType["placeName"];
-  placeAddress: EventType["placeAddress"];
-  presentationCollection: EventType["presentationCollection"];
-};
+export type Event = Partial<{
+  id: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  resume: string;
+  placeName: string;
+  placeAddress: string;
+  presentations: Array<Presentation>;
+}>;

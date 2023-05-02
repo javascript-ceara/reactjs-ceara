@@ -1,10 +1,8 @@
-import { Presentation as PresentationType, Sys, Author } from "../schema";
+import { Author } from "./author";
 
-export interface Presentation {
-  sys: Pick<Sys, "id">;
+export type Presentation = Partial<{
+  id: string;
   author: Author;
-  description: PresentationType["description"];
-  title: PresentationType["title"];
-}
-
-export interface EnumPresentations extends Array<Presentation> {}
+  description: string;
+  title: string;
+}>;

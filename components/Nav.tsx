@@ -2,25 +2,37 @@ import Link from "next/link";
 
 export const Nav = () => {
   return (
-    <nav className="border-b border-t sm:flex sm:items-center sm:justify-center">
-      <ul className="list-none divide-y sm:flex sm:divide-y-0">
+    <nav className="sm:flex sm:items-center sm:justify-center sm:border-b sm:border-t sm:border-slate-200">
+      <ul className="list-none divide-y-2 divide-slate-100 sm:flex sm:divide-y-0">
         <li>
-          <Link href="#" className="block rounded-md px-4 py-4 text-center">
+          <Link
+            href="#"
+            className="block rounded-md px-4 py-4 text-center text-slate-600"
+          >
             Início
           </Link>
         </li>
         <li>
-          <Link href="#" className="block rounded-md px-4 py-4 text-center">
+          <Link
+            href="#"
+            className="block rounded-md px-4 py-4 text-center text-slate-600"
+          >
             Eventos
           </Link>
         </li>
         <li>
-          <Link href="#" className="block rounded-md px-4 py-4 text-center">
+          <Link
+            href="#"
+            className="block rounded-md px-4 py-4 text-center text-slate-600"
+          >
             Blog
           </Link>
         </li>
         <li>
-          <Link href="#" className="block rounded-md px-4 py-4 text-center">
+          <Link
+            href="#"
+            className="block rounded-md px-4 py-4 text-center text-slate-600"
+          >
             A comunidade
           </Link>
         </li>
