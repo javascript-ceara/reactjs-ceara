@@ -8,5 +8,5 @@ export type Event = Partial<{
   resume: string;
   placeName: string;
   placeAddress: string;
-  presentations: Array<Presentation>;
+  presentations: Presentation[];
 }>;

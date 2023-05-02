@@ -1,10 +1,12 @@
-import { InferGetStaticPropsType } from "next";
+import { getAuthorById } from "@/api/operations/getAuthorById";
 import { getEvents } from "@/api/operations/getEvents";
 import { getPresentationsByIds } from "@/api/operations/getPresentationsByIds";
-import { getAuthorById } from "@/api/operations/getAuthorById";
+import { InferGetStaticPropsType } from "next";
 
-import { EventOrder } from "../schema";
 import { HomePage } from "@/components/HomePage";
+import { EventOrder } from "../schema";
+
+import { Event } from "@/types/event";
 
 export default function Home({
   nextEvent,
@@ -31,14 +33,20 @@ export async function getStaticProps() {
   const nextEvent = (
     await Promise.all(
       nextEvents.map(async (nextEvent) => {
-        if (nextEvent.presentations?.length) {
-          const ids = nextEvent.presentations?.map(
+        const event: Event = {
+          ...nextEvent,
+        };
+
+        if (event.presentations) {
+          const ids = event.presentations?.map(
             (presentation) => presentation.id as string
           );
+          event.presentations = await getPresentationsByIds(ids);
+        }
 
-          const presentations = await getPresentationsByIds(ids);
-          const presentationsWithAuthors = await Promise.all(
-            presentations.map(async (presentation) => {
+        if (event.presentations) {
+          Promise.all(
+            event.presentations.map(async (presentation) => {
               if (presentation.author?.id) {
                 const author = await getAuthorById(presentation.author.id);
                 return {
@@ -49,13 +57,9 @@ export async function getStaticProps() {
               return presentation;
             })
           );
-
-          return {
-            ...nextEvent,
-            presentations: presentationsWithAuthors,
-          };
         }
-        return nextEvent;
+
+        return event;
       })
     )
   )[0];

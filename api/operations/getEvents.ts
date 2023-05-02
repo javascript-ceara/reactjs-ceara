@@ -1,12 +1,12 @@
-import { fetchGraphQL } from "../fetchGraphQL";
 import { GetEventsQuery, GetEventsQueryVariables } from "../../schema";
+import { fetchGraphQL } from "../fetchGraphQL";
 
 import { Event } from "../../types/event";
 import { Presentation } from "../../types/presentation";
 
 export const getEvents = async (
   variables: Partial<GetEventsQueryVariables>
-): Promise<Event[]> => {
+): Promise<Array<Event | undefined>> => {
   const response = await fetchGraphQL<GetEventsQuery>(
     /* GraphQL */ `
       query getEvents($order: [EventOrder], $limit: Int, $skip: Int) {
