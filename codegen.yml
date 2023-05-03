@@ -9,7 +9,7 @@ generates:
       - typescript-operations
     config:
       skipTypename: true
-      maybeValue: T
+      maybeValue: T | undefined
   "schema.graphql":
     plugins:
       - schema-ast

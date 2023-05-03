@@ -9,7 +9,7 @@ export const fetchGraphQL = async <D extends Data>(
   query: string,
   options?: Options,
   headers?: HeadersInit
-): Promise<{ data: D }> => {
+): Promise<{ data?: D }> => {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
     {

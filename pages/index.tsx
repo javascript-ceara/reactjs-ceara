@@ -1,7 +1,10 @@
-import { getAuthorById } from "@/api/operations/getAuthorById";
+import { InferGetStaticPropsType } from "next";
+
 import { getEvents } from "@/api/operations/getEvents";
 import { getPresentationsByIds } from "@/api/operations/getPresentationsByIds";
-import { InferGetStaticPropsType } from "next";
+import { getPresentations } from "@/api/operations/getPresentations";
+import { getCommunity } from "@/api/operations/getCommunity";
+import { getPersonById } from "@/api/operations/getPersonById";
 
 import { HomePage } from "@/components/HomePage";
 import { EventOrder } from "../schema";
@@ -9,6 +12,7 @@ import { EventOrder } from "../schema";
 export default function Home({
   nextEvent,
   previousEvents,
+  community,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
@@ -36,11 +40,17 @@ export async function getStaticProps() {
             (presentation) => presentation.id as string
           );
 
-          const presentations = await getPresentationsByIds(ids);
+          const presentations = await getPresentations({
+            where: {
+              sys: {
+                id_in: ids,
+              },
+            },
+          });
           const presentationsWithAuthors = await Promise.all(
             presentations.map(async (presentation) => {
               if (presentation.author?.id) {
-                const author = await getAuthorById(presentation.author.id);
+                const author = await getPersonById(presentation.author.id);
                 return {
                   ...presentation,
                   author,
@@ -60,7 +70,11 @@ export async function getStaticProps() {
     )
   )[0];
 
+  const community = await getCommunity();
+
   return {
-    props: { nextEvent: nextEvent, previousEvents },
+    props: JSON.parse(
+      JSON.stringify({ nextEvent: nextEvent, previousEvents, community })
+    ),
   };
 }

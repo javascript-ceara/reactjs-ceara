@@ -38,7 +38,7 @@ export const getEvents = async (
   );
 
   return (
-    response.data.eventCollection?.items.map<Event>((item) => {
+    response.data?.eventCollection?.items.map<Event>((item) => {
       return {
         id: item?.sys.id,
         title: item?.title,
@@ -49,7 +49,7 @@ export const getEvents = async (
         placeAddress: item?.placeAddress,
         presentations: item?.presentationCollection?.items.map<Presentation>(
           (item) => ({
-            id: item.sys.id,
+            id: item?.sys.id,
           })
         ),
       };
