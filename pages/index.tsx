@@ -1,11 +1,11 @@
 import { InferGetStaticPropsType } from "next";
 
-import { getEvents } from "@/api/operations/getEvents";
-import { getPresentations } from "@/api/operations/getPresentations";
 import { getCommunity } from "@/api/operations/getCommunity";
-import { getPersons } from "@/api/operations/getPersons";
-import { getPersonById } from "@/api/operations/getPersonById";
+import { getEvents } from "@/api/operations/getEvents";
 import { getPartners } from "@/api/operations/getPartners";
+import { getPersonById } from "@/api/operations/getPersonById";
+import { getPersons } from "@/api/operations/getPersons";
+import { getPresentations } from "@/api/operations/getPresentations";
 
 import { HomePage } from "@/components/HomePage";
 import { EventOrder } from "../schema";
