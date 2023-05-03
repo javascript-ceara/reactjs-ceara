@@ -1,10 +1,10 @@
-import { InferGetStaticPropsType } from "next";
+import { getAuthorById } from "@/api/operations/getAuthorById";
 import { getEvents } from "@/api/operations/getEvents";
 import { getPresentationsByIds } from "@/api/operations/getPresentationsByIds";
-import { getAuthorById } from "@/api/operations/getAuthorById";
+import { InferGetStaticPropsType } from "next";
 
-import { EventOrder } from "../schema";
 import { HomePage } from "@/components/HomePage";
+import { EventOrder } from "../schema";
 
 export default function Home({
   nextEvent,

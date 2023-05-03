@@ -1,5 +1,3 @@
-import { GetNextEventQuery } from "../schema";
-
 type Data = {};
 
 type Options = Partial<{

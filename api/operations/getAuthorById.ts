@@ -1,5 +1,5 @@
-import { fetchGraphQL } from "../fetchGraphQL";
 import { GetAuthorsByIdQuery } from "@/schema";
+import { fetchGraphQL } from "../fetchGraphQL";
 
 import { Author } from "../../types/author";
 

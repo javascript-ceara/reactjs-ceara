@@ -1,7 +1,5 @@
-import { fetchGraphQL } from "../fetchGraphQL";
 import { GetPresentationsByIdsQuery } from "../../schema";
-
-import { getAuthorById } from "./getAuthorById";
+import { fetchGraphQL } from "../fetchGraphQL";
 
 import { Presentation } from "../../types/presentation";
 

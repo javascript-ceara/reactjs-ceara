@@ -1,5 +1,5 @@
-import { fetchGraphQL } from "../fetchGraphQL";
 import { GetEventsQuery, GetEventsQueryVariables } from "../../schema";
+import { fetchGraphQL } from "../fetchGraphQL";
 
 import { Event } from "../../types/event";
 import { Presentation } from "../../types/presentation";
