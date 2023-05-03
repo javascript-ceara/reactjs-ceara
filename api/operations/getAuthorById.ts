@@ -3,10 +3,12 @@ import { fetchGraphQL } from "../fetchGraphQL";
 
 import { Author } from "../../types/author";
 
-export const getAuthorById = async (id: string): Promise<Author> => {
+export const getAuthorById = async (
+  id: string
+): Promise<Author | undefined> => {
   const response = await fetchGraphQL<GetAuthorsByIdQuery>(
     /* GraphQL */ `
-      query getAuthorsById($id: String!) {
+      query getAuthorById($id: String!) {
         author(id: $id) {
           name
           bio
@@ -21,10 +23,13 @@ export const getAuthorById = async (id: string): Promise<Author> => {
     `,
     { variables: { id } }
   );
-  return {
-    id: response.data.author?.sys.id,
-    name: response.data.author?.name,
-    bio: response.data.author?.bio,
-    avatar: response.data.author?.avatar,
-  };
+
+  if (response.data.author) {
+    return {
+      id: response.data.author.sys.id,
+      name: response.data.author.name,
+      bio: response.data.author.bio,
+      avatar: response.data.author.avatar,
+    };
+  }
 };

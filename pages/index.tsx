@@ -6,8 +6,6 @@ import { InferGetStaticPropsType } from "next";
 import { HomePage } from "@/components/HomePage";
 import { EventOrder } from "../schema";
 
-import { Event } from "@/types/event";
-
 export default function Home({
   nextEvent,
   previousEvents,
@@ -33,20 +31,14 @@ export async function getStaticProps() {
   const nextEvent = (
     await Promise.all(
       nextEvents.map(async (nextEvent) => {
-        const event: Event = {
-          ...nextEvent,
-        };
-
-        if (event.presentations) {
-          const ids = event.presentations?.map(
+        if (nextEvent.presentations?.length) {
+          const ids = nextEvent.presentations?.map(
             (presentation) => presentation.id as string
           );
-          event.presentations = await getPresentationsByIds(ids);
-        }
 
-        if (event.presentations) {
-          Promise.all(
-            event.presentations.map(async (presentation) => {
+          const presentations = await getPresentationsByIds(ids);
+          const presentationsWithAuthors = await Promise.all(
+            presentations.map(async (presentation) => {
               if (presentation.author?.id) {
                 const author = await getAuthorById(presentation.author.id);
                 return {
@@ -57,9 +49,13 @@ export async function getStaticProps() {
               return presentation;
             })
           );
-        }
 
-        return event;
+          return {
+            ...nextEvent,
+            presentations: presentationsWithAuthors,
+          };
+        }
+        return nextEvent;
       })
     )
   )[0];

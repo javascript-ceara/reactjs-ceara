@@ -6,7 +6,7 @@ import { Presentation } from "../../types/presentation";
 
 export const getEvents = async (
   variables: Partial<GetEventsQueryVariables>
-): Promise<Array<Event | undefined>> => {
+): Promise<Event[]> => {
   const response = await fetchGraphQL<GetEventsQuery>(
     /* GraphQL */ `
       query getEvents($order: [EventOrder], $limit: Int, $skip: Int) {

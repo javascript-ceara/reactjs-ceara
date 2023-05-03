@@ -1,12 +1,11 @@
 import { GetPresentationsByIdsQuery } from "../../schema";
 import { fetchGraphQL } from "../fetchGraphQL";
 
-
 import { Presentation } from "../../types/presentation";
 
 export const getPresentationsByIds = async (
   ids: String[]
-): Promise<Array<Presentation | undefined>> => {
+): Promise<Presentation[]> => {
   const response = await fetchGraphQL<GetPresentationsByIdsQuery>(
     /* GraphQL */ `
       query getPresentationsByIds($ids: [String]!) {
@@ -37,11 +36,7 @@ export const getPresentationsByIds = async (
       return {
         id: item.sys.id,
         author: {
-<<<<<<< HEAD
           id: item.author?.sys.id,
-=======
-          id: item.sys.id,
->>>>>>> aebb3fa (chore: a lot of changes.)
         },
         description: item.description,
         title: item.title,
