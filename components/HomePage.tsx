@@ -1,14 +1,17 @@
-import Image from "next/image";
-import Link from "next/link";
 import { EventsSection } from "@/components/EventsSection";
 import { Footer } from "@/components/Footer";
+import { GithubIcon } from "@/components/GithubIcon";
 import { Header } from "@/components/Header";
 import { HighlightedEventSection } from "@/components/HighlightedEventSection";
-import { GithubIcon } from "@/components/GithubIcon";
-import { Event } from "@/types/event";
 import { Community } from "@/types/community";
+import { Event } from "@/types/event";
 import { Person } from "@/types/person";
+
 import { Partner } from "@/types/partner";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { MARKS } from "@contentful/rich-text-types";
+import Image from "next/image";
+
 type Props = {
   highlightedEvent?: Event;
   nextEvents: Event[];
@@ -22,7 +25,15 @@ export const HomePage = ({
   nextEvents,
   organizers,
   partners,
+  community,
 }: Props) => {
+  console.log(community, documentToReactComponents);
+  const Text = ({ children }) => <p className=" text-red-500">{children}</p>;
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <Text>{text}</Text>,
+    },
+  };
   return (
     <div>
       <Header />
