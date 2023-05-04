@@ -14,6 +14,13 @@ export const getPersonById = async (
             id
           }
           name
+          jobTitle
+          company
+          location
+          website
+          github
+          linkedin
+          isOrganizer
           bio
           avatar {
             url
@@ -30,6 +37,13 @@ export const getPersonById = async (
       name: response.data.person.name,
       bio: response.data.person.bio,
       avatar: response.data.person.avatar,
+      company: response.data.person.company,
+      location: response.data.person.location,
+      linkedin: response.data.person.linkedin,
+      github: response.data.person.github,
+      jobTitle: response.data.person.jobTitle,
+      website: response.data.person.website,
+      isOrganizer: response.data.person.isOrganizer,
     };
   }
 };

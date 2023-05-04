@@ -25,9 +25,15 @@ export const getPersons = async (
               id
             }
             name
+            jobTitle
+            company
+            location
+            website
+            github
+            linkedin
+            isOrganizer
             bio
             avatar {
-              title
               url
             }
           }
@@ -46,6 +52,13 @@ export const getPersons = async (
         name: item?.name,
         bio: item?.bio,
         avatar: item?.avatar,
+        company: item?.company,
+        location: item?.location,
+        linkedin: item?.linkedin,
+        github: item?.github,
+        jobTitle: item?.jobTitle,
+        website: item?.website,
+        isOrganizer: item?.isOrganizer,
       };
     }) || []
   );

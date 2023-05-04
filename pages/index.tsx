@@ -1,22 +1,30 @@
 import { InferGetStaticPropsType } from "next";
 
 import { getEvents } from "@/api/operations/getEvents";
-import { getPresentationsByIds } from "@/api/operations/getPresentationsByIds";
 import { getPresentations } from "@/api/operations/getPresentations";
 import { getCommunity } from "@/api/operations/getCommunity";
+import { getPersons } from "@/api/operations/getPersons";
 import { getPersonById } from "@/api/operations/getPersonById";
 
 import { HomePage } from "@/components/HomePage";
 import { EventOrder } from "../schema";
 
+import { deleteUndefined } from "@/utils/deleteUndefined";
+
 export default function Home({
   nextEvent,
   previousEvents,
   community,
+  organizers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
-      <HomePage nextEvent={nextEvent} previousEvents={previousEvents} />
+      <HomePage
+        nextEvent={nextEvent}
+        previousEvents={previousEvents}
+        community={community}
+        organizers={organizers}
+      />
     </div>
   );
 }
@@ -72,9 +80,22 @@ export async function getStaticProps() {
 
   const community = await getCommunity();
 
+  const organizers = await getPersons({
+    where: {
+      isOrganizer: true,
+    },
+  });
+
+  const props = {
+    nextEvent: nextEvent,
+    previousEvents,
+    community,
+    organizers,
+  };
+
+  deleteUndefined(props);
+
   return {
-    props: JSON.parse(
-      JSON.stringify({ nextEvent: nextEvent, previousEvents, community })
-    ),
+    props,
   };
 }
