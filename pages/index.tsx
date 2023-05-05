@@ -5,6 +5,7 @@ import { getPresentations } from "@/api/operations/getPresentations";
 import { getCommunity } from "@/api/operations/getCommunity";
 import { getPersons } from "@/api/operations/getPersons";
 import { getPersonById } from "@/api/operations/getPersonById";
+import { getPartners } from "@/api/operations/getPartners";
 
 import { HomePage } from "@/components/HomePage";
 import { EventOrder } from "../schema";
@@ -12,18 +13,20 @@ import { EventOrder } from "../schema";
 import { deleteUndefined } from "@/utils/deleteUndefined";
 
 export default function Home({
-  nextEvent,
-  previousEvents,
+  nextEvents,
+  highlightedEvent,
   community,
   organizers,
+  partners,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <HomePage
-        nextEvent={nextEvent}
-        previousEvents={previousEvents}
+        highlightedEvent={highlightedEvent}
+        nextEvents={nextEvents}
         community={community}
         organizers={organizers}
+        partners={partners}
       />
     </div>
   );
@@ -32,51 +35,38 @@ export default function Home({
 export async function getStaticProps() {
   const nextEvents = await getEvents({
     order: [EventOrder.StartDateDesc],
-    limit: 1,
   });
 
-  const previousEvents = await getEvents({
-    order: [EventOrder.StartDateDesc],
-    skip: 1,
-  });
+  const highlightedEvent = nextEvents[0];
 
-  const nextEvent = (
-    await Promise.all(
-      nextEvents.map(async (nextEvent) => {
-        if (nextEvent.presentations?.length) {
-          const ids = nextEvent.presentations?.map(
-            (presentation) => presentation.id as string
-          );
+  if (highlightedEvent) {
+    const ids =
+      highlightedEvent.presentations?.map((presentation) => presentation.id) ||
+      [];
 
-          const presentations = await getPresentations({
-            where: {
-              sys: {
-                id_in: ids,
-              },
-            },
-          });
-          const presentationsWithAuthors = await Promise.all(
-            presentations.map(async (presentation) => {
-              if (presentation.author?.id) {
-                const author = await getPersonById(presentation.author.id);
-                return {
-                  ...presentation,
-                  author,
-                };
-              }
-              return presentation;
-            })
-          );
+    let presentations = await getPresentations({
+      where: {
+        sys: {
+          id_in: ids,
+        },
+      },
+    });
 
+    presentations = await Promise.all(
+      presentations.map(async (presentation) => {
+        if (presentation.author?.id) {
+          const author = await getPersonById(presentation.author.id);
           return {
-            ...nextEvent,
-            presentations: presentationsWithAuthors,
+            ...presentation,
+            author,
           };
         }
-        return nextEvent;
+        return presentation;
       })
-    )
-  )[0];
+    );
+
+    highlightedEvent.presentations = presentations;
+  }
 
   const community = await getCommunity();
 
@@ -86,11 +76,14 @@ export async function getStaticProps() {
     },
   });
 
+  const partners = await getPartners();
+
   const props = {
-    nextEvent: nextEvent,
-    previousEvents,
+    highlightedEvent,
+    nextEvents,
     community,
     organizers,
+    partners,
   };
 
   deleteUndefined(props);

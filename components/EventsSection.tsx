@@ -1,5 +1,5 @@
 import { Event } from "@/types/event";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Link from "next/link";
 
@@ -10,41 +10,44 @@ type Props = {
 
 export const EventsSection = ({ events }: Props) => {
   return (
-    <section className="bg-slate-100">
-      <div className="space-y-16 px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
-        <h2 className="text-center text-sm uppercase text-cyan-600">
-          Eventos anteriores
+    <section className="bg-gray-100">
+      <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
+        <h2 className="mb-8 text-center text-2xl text-sky-700">
+          Nossos eventos
         </h2>
-        <ul className="space-y-2 divide-y-2">
-          {events.map(({ id, title, resume, startDate }) => {
-            return (
-              <li key={id} className="space-y-2 py-4">
-                <div>
-                  <p className="inline-flex items-center space-x-1 text-xs font-semibold  text-slate-500">
-                    <CalendarIcon className="h-5 w-5" />
-                    <span>
-                      {format(parseISO(startDate || ""), "dd LLLL", {
-                        locale: ptBR,
-                      })}
-                    </span>
-                  </p>
-                  <h4 className="text-lg text-cyan-600">
-                    <Link href="#">{title}</Link>
-                  </h4>
-                </div>
-                <p className="text-sm text-slate-600">{resume}</p>
-              </li>
-            );
-          })}
-        </ul>
-        <div className="flex">
-          <Link
-            href="#"
-            className="flex-1 rounded-md bg-slate-200 px-12 py-4 text-center font-medium uppercase text-slate-500"
-          >
-            Ver mais eventos
-          </Link>
-        </div>
+        {events.length ? (
+          <ul className="space-y-2 divide-y-2 divide-gray-200">
+            {events.map(({ id, title, resume, startDate }) => {
+              return (
+                <li key={id} className="space-y-2 py-4">
+                  <div>
+                    <p className="mb-2 inline-flex items-center space-x-1 text-sm  text-gray-600">
+                      {startDate &&
+                        format(parseISO(startDate || ""), "dd LLLL, K:mm'h'", {
+                          locale: ptBR,
+                        })}
+                    </p>
+                    <h4 className="text-xl text-gray-600">
+                      <Link href="#">{title}</Link>
+                    </h4>
+                  </div>
+                  <p className="text-sm text-gray-600">{resume}</p>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="text-center text-sm leading-10 text-gray-300">
+            Os eventos aparecerão aqui
+          </p>
+        )}
+
+        <Link
+          href="#"
+          className="border-sky-900/10px-12 mt-16 block rounded-md border border-gray-300  py-4 text-center text-gray-600"
+        >
+          Ver mais eventos
+        </Link>
       </div>
     </section>
   );

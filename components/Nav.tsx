@@ -9,25 +9,10 @@ export const Nav = () => {
             href="#"
             className="block rounded-md px-4 py-4 text-center text-slate-600"
           >
-            Início
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="#"
-            className="block rounded-md px-4 py-4 text-center text-slate-600"
-          >
             Eventos
           </Link>
         </li>
-        <li>
-          <Link
-            href="#"
-            className="block rounded-md px-4 py-4 text-center text-slate-600"
-          >
-            Blog
-          </Link>
-        </li>
+
         <li>
           <Link
             href="#"
