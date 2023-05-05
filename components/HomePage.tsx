@@ -5,12 +5,10 @@ import { Header } from "@/components/Header";
 import { HighlightedEventSection } from "@/components/HighlightedEventSection";
 import { Community } from "@/types/community";
 import { Event } from "@/types/event";
-import { Person } from "@/types/person";
-
 import { Partner } from "@/types/partner";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { MARKS } from "@contentful/rich-text-types";
+import { Person } from "@/types/person";
 import Image from "next/image";
+import { CommunityText } from "./CommunityText";
 
 type Props = {
   highlightedEvent?: Event;
@@ -27,13 +25,6 @@ export const HomePage = ({
   partners,
   community,
 }: Props) => {
-  console.log(community, documentToReactComponents);
-  const Text = ({ children }) => <p className=" text-red-500">{children}</p>;
-  const options = {
-    renderMark: {
-      [MARKS.BOLD]: (text) => <Text>{text}</Text>,
-    },
-  };
   return (
     <div>
       <Header />
@@ -44,14 +35,8 @@ export const HomePage = ({
           <h2 className="mb-8 text-center text-2xl text-sky-700">
             A comunidade
           </h2>
-          <p className="mb-8 text-center text-gray-600">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using Content here, content
-            here, making it look like readable English.
-          </p>
-          <h3 className="mb-8 text-center text-lg text-sky-700">
+          {community && <CommunityText text={community.text.json} />}
+          <h3 className="mb-8 text-center text-sm uppercase text-slate-500">
             Organizadores
           </h3>
           <ul className=" flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-center">
