@@ -11,7 +11,7 @@ export const fetchGraphQL = async <D extends Data>(
   headers?: HeadersInit
 ): Promise<{ data?: D }> => {
   return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}`,
     {
       method: "POST",
       headers: {
@@ -19,8 +19,8 @@ export const fetchGraphQL = async <D extends Data>(
         ...headers,
         Authorization: `Bearer ${
           options?.preview
-            ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
-            : process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN
+            ? process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN
+            : process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_ACCESS_TOKEN
         }`,
       },
       body: JSON.stringify({ query, variables: options?.variables }),

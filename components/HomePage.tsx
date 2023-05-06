@@ -12,7 +12,7 @@ import { CommunityText } from "./CommunityText";
 
 type Props = {
   highlightedEvent?: Event;
-  events: Event[];
+  eventsSection: React.ReactNode;
   community?: Community;
   organizers: Person[];
   partners: Partner[];
@@ -20,7 +20,7 @@ type Props = {
 
 export const HomePage = ({
   highlightedEvent,
-  events,
+  eventsSection,
   organizers,
   partners,
   community,
@@ -29,7 +29,7 @@ export const HomePage = ({
     <div>
       <Header />
       {highlightedEvent && <HighlightedEventSection event={highlightedEvent} />}
-      <EventsSection events={events} />
+      {eventsSection}
       <section>
         <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
           <h2 className="mb-8 text-center text-2xl text-sky-700">
@@ -39,11 +39,11 @@ export const HomePage = ({
           <h3 className="mb-8 text-center text-sm uppercase text-slate-500">
             Organizadores
           </h3>
-          <ul className=" flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-center">
+          <ul className=" flex flex-col flex-wrap gap-4 sm:flex-row sm:items-stretch sm:justify-center">
             {organizers.map((organizer) => (
               <li
                 key={organizer.id}
-                className="flex items-center space-x-2 rounded-2xl border border-gray-200 p-4 sm:flex-col sm:space-x-0 sm:space-y-2"
+                className="flex  items-center space-x-2 rounded-2xl border border-gray-200 p-4 sm:w-40 sm:flex-col sm:space-x-0 sm:space-y-2"
               >
                 {organizer.avatar?.url && (
                   <div className="relative h-20 w-20 overflow-hidden rounded-full sm:h-24 sm:w-24">
@@ -59,9 +59,11 @@ export const HomePage = ({
                   <h5 className="text-lg text-gray-700 sm:text-center">
                     {organizer.name}
                   </h5>
-                  <p className="text-sm text-gray-500">{organizer.jobTitle}</p>
+                  <p className="text-center text-xs text-gray-500">
+                    {organizer.jobTitle}
+                  </p>
                   {organizer.github && (
-                    <p className="mt-2 flex items-center text-sm  text-slate-500">
+                    <p className="mt-2 flex items-center text-sm text-slate-500  sm:justify-center">
                       <GithubIcon className="mr-1 h-4 w-4 fill-gray-500" />
                       <a
                         href={`https://github.com/${organizer.github}`}

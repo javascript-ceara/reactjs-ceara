@@ -1,13 +1,23 @@
 import { Event } from "@/types/event";
-import { format, parseISO, formatDistanceToNow } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Link from "next/link";
 
+import { SpinIcon } from "./SpinIcon";
+
 type Props = {
   events: Event[];
+  onLoadMoreEvents: () => void;
+  isLoadingEvents: boolean;
+  hasNoMoreEventsToLoad: boolean;
 };
 
-export const EventsSection = ({ events }: Props) => {
+export const EventsSection = ({
+  events,
+  onLoadMoreEvents,
+  isLoadingEvents,
+  hasNoMoreEventsToLoad,
+}: Props) => {
   return (
     <section className="bg-gray-100">
       <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
@@ -41,12 +51,16 @@ export const EventsSection = ({ events }: Props) => {
           </p>
         )}
 
-        <Link
-          href="#"
-          className="border-sky-900/10px-12 mt-16 block rounded-md border border-gray-300  py-4 text-center text-gray-600"
+        <button
+          disabled={isLoadingEvents || hasNoMoreEventsToLoad}
+          className="border-sky-900/10px-12  mt-16 flex w-full items-center justify-center rounded-md border border-gray-300 py-4  text-center text-gray-700 disabled:cursor-default disabled:border-gray-200 disabled:text-gray-400"
+          onClick={onLoadMoreEvents}
         >
-          Ver mais eventos
-        </Link>
+          {isLoadingEvents && (
+            <SpinIcon className=" mr-2 h-5 w-5 animate-spin fill-gray-600 delay-0" />
+          )}
+          <span>Ver mais eventos</span>
+        </button>
       </div>
     </section>
   );

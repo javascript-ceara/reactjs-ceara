@@ -8,7 +8,8 @@ import { getPersons } from "@/api/operations/getPersons";
 import { getPresentations } from "@/api/operations/getPresentations";
 
 import { HomePage } from "@/components/HomePage";
-import { EventOrder } from "../schema";
+import { EventsSectionContainer } from "@/containers/EventsSectionContainer";
+import { EventOrder } from "@/schema";
 
 import { deleteUndefined } from "@/utils/deleteUndefined";
 
@@ -23,7 +24,7 @@ export default function Home({
     <div>
       <HomePage
         highlightedEvent={highlightedEvent}
-        events={events}
+        eventsSection={<EventsSectionContainer initialEvents={events} />}
         community={community}
         organizers={organizers}
         partners={partners}
@@ -33,11 +34,12 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const events = await getEvents({
+  const { items } = await getEvents({
     order: [EventOrder.StartDateDesc],
+    limit: 2,
   });
 
-  const highlightedEvents = await getEvents({
+  const { items: highlightedEvents } = await getEvents({
     where: {
       highlighted: true,
     },
@@ -86,7 +88,7 @@ export async function getStaticProps() {
 
   const props = {
     highlightedEvent,
-    events,
+    events: items,
     community,
     organizers,
     partners,

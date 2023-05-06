@@ -1,7 +1,7 @@
 schema:
-  - https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}:
+  - https://graphql.contentful.com/content/v1/spaces/${NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}:
       headers:
-        Authorization: "Bearer ${CONTENTFUL_DELIVERY_ACCESS_TOKEN}"
+        Authorization: "Bearer ${NEXT_PUBLIC_CONTENTFUL_DELIVERY_ACCESS_TOKEN}"
 generates:
   "schema.ts":
     plugins:
