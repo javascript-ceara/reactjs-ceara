@@ -1,13 +1,12 @@
-import Image from "next/image";
 import { Popover, Transition } from "@headlessui/react";
-import { format, formatISO, parseISO } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon";
 import MapPinIcon from "@heroicons/react/24/outline/MapPinIcon";
-import UserCircleIcon from "@heroicons/react/24/outline/UserCircleIcon";
 
 import { Event } from "../types/event";
 

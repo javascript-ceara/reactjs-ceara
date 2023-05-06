@@ -1,8 +1,8 @@
-import { Fragment } from "react";
-import Link from "next/link";
+import { Event } from "@/types/event";
 import { Popover, Transition } from "@headlessui/react";
 import MapPinIcon from "@heroicons/react/24/outline/MapPinIcon";
-import { Event } from "@/types/event";
+import Link from "next/link";
+import { Fragment } from "react";
 
 type Props = Pick<Event, "placeAddress" | "placeName">;
 

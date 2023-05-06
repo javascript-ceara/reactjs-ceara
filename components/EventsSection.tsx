@@ -3,7 +3,6 @@ import { format, parseISO, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Link from "next/link";
 
-import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon";
 type Props = {
   events: Event[];
 };
