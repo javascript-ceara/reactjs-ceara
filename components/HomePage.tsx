@@ -12,7 +12,7 @@ import { CommunityText } from "./CommunityText";
 
 type Props = {
   highlightedEvent?: Event;
-  nextEvents: Event[];
+  events: Event[];
   community?: Community;
   organizers: Person[];
   partners: Partner[];
@@ -20,7 +20,7 @@ type Props = {
 
 export const HomePage = ({
   highlightedEvent,
-  nextEvents,
+  events,
   organizers,
   partners,
   community,
@@ -29,7 +29,7 @@ export const HomePage = ({
     <div>
       <Header />
       {highlightedEvent && <HighlightedEventSection event={highlightedEvent} />}
-      <EventsSection events={nextEvents} />
+      <EventsSection events={events} />
       <section>
         <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
           <h2 className="mb-8 text-center text-2xl text-sky-700">
@@ -89,7 +89,7 @@ export const HomePage = ({
       <section className="bg-gray-100">
         <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
           <h2 className="mb-8 text-center text-2xl text-sky-700">Parceiros</h2>
-          <ul className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+          <ul className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             {partners.map((partner) => (
               <li key={partner.id}>
                 {partner.logo?.url && (

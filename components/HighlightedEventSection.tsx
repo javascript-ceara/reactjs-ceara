@@ -104,7 +104,7 @@ export const HighlightedEventSection = ({ event }: Props) => {
             ))}
           </ul>
         ) : (
-          <p className="text-center text-sm leading-10 text-slate-500">
+          <p className="mt-4 text-center text-sm leading-10 text-white">
             As palestras aparecerão aqui
           </p>
         )}

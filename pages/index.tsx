@@ -13,7 +13,7 @@ import { EventOrder } from "../schema";
 import { deleteUndefined } from "@/utils/deleteUndefined";
 
 export default function Home({
-  nextEvents,
+  events,
   highlightedEvent,
   community,
   organizers,
@@ -23,7 +23,7 @@ export default function Home({
     <div>
       <HomePage
         highlightedEvent={highlightedEvent}
-        nextEvents={nextEvents}
+        events={events}
         community={community}
         organizers={organizers}
         partners={partners}
@@ -33,11 +33,17 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const nextEvents = await getEvents({
+  const events = await getEvents({
     order: [EventOrder.StartDateDesc],
   });
 
-  const highlightedEvent = nextEvents[0];
+  const highlightedEvents = await getEvents({
+    where: {
+      highlighted: true,
+    },
+  });
+
+  const highlightedEvent = highlightedEvents[0];
 
   if (highlightedEvent) {
     const ids =
@@ -80,7 +86,7 @@ export async function getStaticProps() {
 
   const props = {
     highlightedEvent,
-    nextEvents,
+    events,
     community,
     organizers,
     partners,

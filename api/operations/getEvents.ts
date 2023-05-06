@@ -5,12 +5,22 @@ import { Event } from "../../types/event";
 import { Presentation } from "../../types/presentation";
 
 export const getEvents = async (
-  variables: Partial<GetEventsQueryVariables>
+  variables?: Partial<GetEventsQueryVariables>
 ): Promise<Event[]> => {
   const response = await fetchGraphQL<GetEventsQuery>(
     /* GraphQL */ `
-      query getEvents($order: [EventOrder], $limit: Int, $skip: Int) {
-        eventCollection(order: $order, limit: $limit, skip: $skip) {
+      query getEvents(
+        $order: [EventOrder]
+        $limit: Int
+        $skip: Int
+        $where: EventFilter
+      ) {
+        eventCollection(
+          order: $order
+          limit: $limit
+          skip: $skip
+          where: $where
+        ) {
           items {
             sys {
               id
