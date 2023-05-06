@@ -7,6 +7,8 @@ export type Event = Partial<{
   endDate: string;
   resume: string;
   placeName: string;
+  registrationLink: string;
+  cfpLink: string;
   placeAddress: string;
   presentations: Array<Presentation>;
 }>;

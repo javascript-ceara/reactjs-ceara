@@ -2,7 +2,6 @@ import { Popover, Transition } from "@headlessui/react";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
-import Link from "next/link";
 import { Fragment } from "react";
 
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon";
@@ -35,21 +34,23 @@ export const HighlightedEventSection = ({ event }: Props) => {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 translate-y-1"
                 >
-                  <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-sm">
+                  <Popover.Panel className="absolute left-3/4 z-10 mt-3 w-screen max-w-xs -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-sm">
                     <div className="space-y-4 overflow-hidden rounded-lg border border-slate-200 bg-white p-4 shadow-lg">
-                      <address className="relative space-y-2">
-                        <p className="text-sm not-italic text-slate-500">
+                      <address className="relative">
+                        <p className="mb-2 text-sm font-medium not-italic text-gray-500">
                           {event.placeName}
                         </p>
-                        <p className="text-slate-600">{event.placeAddress}</p>
+                        <p className="text-sm text-gray-600">
+                          {event.placeAddress}
+                        </p>
                       </address>
-                      <Link
+                      <a
                         href={`https://www.google.com/maps/search/${event.placeName}`}
                         target="_blank"
-                        className="inline-block text-sm font-semibold text-slate-600"
+                        className="inline-block text-sm text-gray-600"
                       >
                         Ver no mapa
-                      </Link>
+                      </a>
                     </div>
                   </Popover.Panel>
                 </Transition>
@@ -110,17 +111,22 @@ export const HighlightedEventSection = ({ event }: Props) => {
         )}
 
         <div className="mb-8 flex items-center justify-center px-12 py-4">
-          <Link href="#" className="text-lg text-white">
+          <a
+            href={event.cfpLink}
+            target="_blank"
+            className="text-lg text-white"
+          >
             Envie sua palestra
-          </Link>
+          </a>
         </div>
 
-        <Link
-          href="#"
+        <a
+          href={event.registrationLink}
+          target="_blank"
           className="font block rounded-md bg-sky-700 px-12 py-4 text-center text-lg font-semibold uppercase text-white"
         >
           Inscreva-se
-        </Link>
+        </a>
       </div>
     </section>
   );

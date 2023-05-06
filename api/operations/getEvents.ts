@@ -31,6 +31,8 @@ export const getEvents = async (
             resume
             placeName
             placeAddress
+            registrationLink
+            cfpLink
             presentationCollection {
               items {
                 sys {
@@ -57,6 +59,8 @@ export const getEvents = async (
         resume: item?.resume,
         placeName: item?.placeName,
         placeAddress: item?.placeAddress,
+        registrationLink: item?.registrationLink,
+        cfpLink: item?.cfpLink,
         presentations: item?.presentationCollection?.items.map<Presentation>(
           (item) => ({
             id: item?.sys.id,
