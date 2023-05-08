@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HighlightedEventSection } from "./HighlightedEventSection";
@@ -25,13 +26,20 @@ export const HomePage = ({
   community,
 }: Props) => {
   return (
-    <div>
-      <Header />
-      {highlightedEvent && <HighlightedEventSection event={highlightedEvent} />}
-      {ourEventsSection}
-      <CommunitySection community={community} organizers={organizers} />
-      <PartnersSection partners={partners} />
-      <Footer />
-    </div>
+    <>
+      <Head>
+        <title>React Ceará</title>
+      </Head>
+      <div>
+        <Header />
+        {highlightedEvent && (
+          <HighlightedEventSection event={highlightedEvent} />
+        )}
+        {ourEventsSection}
+        <CommunitySection community={community} organizers={organizers} />
+        <PartnersSection partners={partners} />
+        <Footer />
+      </div>
+    </>
   );
 };
