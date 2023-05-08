@@ -61,9 +61,13 @@ export const HighlightedEventSection = ({ event }: Props) => {
             <CalendarIcon className="h-5 w-5" />
             <span>
               {event.startDate &&
-                format(parseISO(event.startDate || ""), "dd LLLL, K:mm'h'", {
-                  locale: ptBR,
-                })}
+                format(
+                  parseISO(event.startDate || ""),
+                  "dd LLLL, yyyy K:mm'h'",
+                  {
+                    locale: ptBR,
+                  }
+                )}
             </span>
           </p>
         </div>
