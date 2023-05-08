@@ -6,7 +6,7 @@ export const Nav = () => {
       <ul className="list-none divide-y-2 divide-slate-100 sm:flex sm:divide-y-0">
         <li>
           <Link
-            href="#"
+            href="#events"
             className="block rounded-md px-4 py-4 text-center text-slate-600"
           >
             Eventos
@@ -15,7 +15,7 @@ export const Nav = () => {
 
         <li>
           <Link
-            href="#"
+            href="#community"
             className="block rounded-md px-4 py-4 text-center text-slate-600"
           >
             A comunidade

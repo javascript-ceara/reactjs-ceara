@@ -12,14 +12,14 @@ type Props = {
   hasNoMoreEventsToLoad: boolean;
 };
 
-export const EventsSection = ({
+export const OurEventsSection = ({
   events,
   onLoadMoreEvents,
   isLoadingEvents,
   hasNoMoreEventsToLoad,
 }: Props) => {
   return (
-    <section className="bg-gray-100">
+    <section id="events" className="bg-gray-100">
       <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
         <h2 className="mb-8 text-center text-2xl text-sky-700">
           Nossos eventos

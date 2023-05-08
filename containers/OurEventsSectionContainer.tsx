@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { EventsSection } from "@/components/EventsSection";
+import { OurEventsSection } from "@/components/OurEventsSection";
 import { getEvents } from "@/api/operations/getEvents";
 import { Event } from "@/types/event";
 import { EventOrder } from "@/schema";
@@ -9,7 +9,7 @@ type Props = {
   initialEvents: Event[];
 };
 
-export const EventsSectionContainer = ({ initialEvents }: Props) => {
+export const OurEventsSectionContainer = ({ initialEvents }: Props) => {
   const [events, setEvents] = useState<Event[]>(initialEvents);
   const [skip, setSkip] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -44,7 +44,7 @@ export const EventsSectionContainer = ({ initialEvents }: Props) => {
   };
 
   return (
-    <EventsSection
+    <OurEventsSection
       events={events}
       onLoadMoreEvents={onLoadMoreEvents}
       isLoadingEvents={loading}

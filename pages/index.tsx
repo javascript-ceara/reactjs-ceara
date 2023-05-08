@@ -8,7 +8,7 @@ import { getPersons } from "@/api/operations/getPersons";
 import { getPresentations } from "@/api/operations/getPresentations";
 
 import { HomePage } from "@/components/HomePage";
-import { EventsSectionContainer } from "@/containers/EventsSectionContainer";
+import { OurEventsSectionContainer } from "@/containers/OurEventsSectionContainer";
 import { EventOrder } from "@/schema";
 
 import { deleteUndefined } from "@/utils/deleteUndefined";
@@ -24,7 +24,7 @@ export default function Home({
     <div>
       <HomePage
         highlightedEvent={highlightedEvent}
-        eventsSection={<EventsSectionContainer initialEvents={events} />}
+        ourEventsSection={<OurEventsSectionContainer initialEvents={events} />}
         community={community}
         organizers={organizers}
         partners={partners}
