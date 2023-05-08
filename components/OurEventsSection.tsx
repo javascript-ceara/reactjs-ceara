@@ -34,7 +34,7 @@ export const OurEventsSection = ({
                       {startDate &&
                         format(
                           parseISO(startDate || ""),
-                          "dd LLLL, yyyy K:mm'h'",
+                          "dd LLLL 'de' yyyy 'às' K:mm'h'",
                           {
                             locale: ptBR,
                           }

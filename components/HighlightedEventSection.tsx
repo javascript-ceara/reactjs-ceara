@@ -17,7 +17,7 @@ export const HighlightedEventSection = ({ event }: Props) => {
   return (
     <section className="bg-sky-800">
       <div className="px-8 py-16 md:mx-auto md:max-w-3xl">
-        <div className="mb-8 flex items-center justify-center space-x-4">
+        <div className="mb-8 flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
           <Popover className="relative">
             {() => (
               <>
@@ -63,7 +63,7 @@ export const HighlightedEventSection = ({ event }: Props) => {
               {event.startDate &&
                 format(
                   parseISO(event.startDate || ""),
-                  "dd LLLL, yyyy K:mm'h'",
+                  "dd LLLL 'de' yyyy 'às' K:mm'h'",
                   {
                     locale: ptBR,
                   }
