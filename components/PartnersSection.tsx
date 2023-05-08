@@ -18,8 +18,8 @@ export const PartnersSection = ({ partners }: Props) => {
                   src={partner.logo?.url || ""}
                   alt={partner.name || ""}
                   title={partner.name}
-                  width={180}
-                  height={180}
+                  width={150}
+                  height={150}
                   className="object-cover"
                 />
               )}
