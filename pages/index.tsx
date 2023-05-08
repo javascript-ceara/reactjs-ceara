@@ -9,7 +9,7 @@ import { getPresentations } from "@/api/operations/getPresentations";
 
 import { HomePage } from "@/components/HomePage";
 import { OurEventsSectionContainer } from "@/containers/OurEventsSectionContainer";
-import { EventOrder } from "@/schema";
+import { EventOrder, PersonOrder } from "@/schema";
 
 import { deleteUndefined } from "@/utils/deleteUndefined";
 
@@ -79,6 +79,7 @@ export async function getStaticProps() {
   const community = await getCommunity();
 
   const organizers = await getPersons({
+    order: [PersonOrder.NameAsc],
     where: {
       isOrganizer: true,
     },
