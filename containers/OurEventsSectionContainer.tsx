@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { OurEventsSection } from "@/components/OurEventsSection";
 import { getEvents } from "@/api/operations/getEvents";
@@ -19,7 +19,7 @@ export const OurEventsSectionContainer = ({ initialEvents }: Props) => {
     try {
       setLoading(true);
       const ids = initialEvents.map((event) => event.id || "");
-      const { items, total } = await getEvents({
+      const { items, total, limit } = await getEvents({
         order: [EventOrder.StartDateDesc],
         limit: 2,
         where: {
@@ -32,7 +32,7 @@ export const OurEventsSectionContainer = ({ initialEvents }: Props) => {
       setEvents((prev) => {
         return [...prev, ...items];
       });
-      setSkip((prev) => prev + (total || 0));
+      setSkip((prev) => prev + (limit || 0));
 
       if (total === 0) {
         setHasNoMoreEventsToLoad(true);

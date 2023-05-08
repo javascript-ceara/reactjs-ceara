@@ -32,9 +32,13 @@ export const OurEventsSection = ({
                   <div>
                     <p className="mb-2 inline-flex items-center space-x-1 text-sm  text-gray-600">
                       {startDate &&
-                        format(parseISO(startDate || ""), "dd LLLL, K:mm'h'", {
-                          locale: ptBR,
-                        })}
+                        format(
+                          parseISO(startDate || ""),
+                          "dd LLLL, yyyy K:mm'h'",
+                          {
+                            locale: ptBR,
+                          }
+                        )}
                     </p>
                     <h4 className="text-xl text-gray-600">
                       <Link href="#">{title}</Link>
