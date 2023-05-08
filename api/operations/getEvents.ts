@@ -40,6 +40,8 @@ export const getEvents = async (
             placeName
             placeAddress
             registrationLink
+            highlighted
+            isAnOnlineEvent
             cfpLink
             presentationCollection {
               items {
@@ -71,6 +73,8 @@ export const getEvents = async (
           placeAddress: item?.placeAddress,
           registrationLink: item?.registrationLink,
           cfpLink: item?.cfpLink,
+          highlighted: item?.highlighted,
+          isAnOnlineEvent: item?.isAnOnlineEvent,
           presentations: item?.presentationCollection?.items.map<Presentation>(
             (item) => ({
               id: item?.sys.id,

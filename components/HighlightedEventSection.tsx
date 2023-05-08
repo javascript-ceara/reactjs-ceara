@@ -44,13 +44,15 @@ export const HighlightedEventSection = ({ event }: Props) => {
                           {event.placeAddress}
                         </p>
                       </address>
-                      <a
-                        href={`https://www.google.com/maps/search/${event.placeName}`}
-                        target="_blank"
-                        className="inline-block text-sm text-gray-600"
-                      >
-                        Ver no mapa
-                      </a>
+                      {!event.isAnOnlineEvent && (
+                        <a
+                          href={`https://www.google.com/maps/search/${event.placeName}`}
+                          target="_blank"
+                          className="inline-block text-sm text-gray-600"
+                        >
+                          Ver no mapa
+                        </a>
+                      )}
                     </div>
                   </Popover.Panel>
                 </Transition>

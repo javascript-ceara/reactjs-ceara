@@ -9,6 +9,8 @@ export type Event = Partial<{
   placeName: string;
   registrationLink: string;
   cfpLink: string;
+  highlighted: boolean;
+  isAnOnlineEvent: boolean;
   placeAddress: string;
   presentations: Array<Presentation>;
 }>;
