@@ -34,7 +34,7 @@ export const HighlightedEventSection = ({ event }: Props) => {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 translate-y-1"
                 >
-                  <Popover.Panel className="absolute left-3/4 z-10 mt-3 w-screen max-w-xs -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-sm">
+                  <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-xs -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-sm">
                     <div className="space-y-4 overflow-hidden rounded-lg border border-slate-200 bg-white p-4 shadow-lg">
                       <address className="relative">
                         <p className="mb-2 text-sm font-medium not-italic text-gray-500">
