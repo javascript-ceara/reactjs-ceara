@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { OurEventsSection } from "@/components/OurEventsSection";
 import { getEvents } from "@/api/operations/getEvents";
 import { Event } from "@/types/event";
 import { EventOrder } from "@/schema";
+
+import { event } from "@/utils/ga";
 
 type Props = {
   initialEvents: Event[];
@@ -17,6 +19,10 @@ export const OurEventsSectionContainer = ({ initialEvents }: Props) => {
 
   const onLoadMoreEvents = async () => {
     try {
+      event({
+        action: "load_more_events",
+      });
+
       setLoading(true);
       const ids = initialEvents.map((event) => event.id || "");
       const { items, total, limit } = await getEvents({

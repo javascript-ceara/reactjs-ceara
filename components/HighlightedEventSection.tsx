@@ -1,9 +1,9 @@
-import { Popover, Transition } from "@headlessui/react";
-import { format, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import Image from "next/image";
-import { Fragment } from "react";
 
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+
+import { StartDate } from "./StartDate";
 import CalendarIcon from "@heroicons/react/24/outline/CalendarIcon";
 import MapPinIcon from "@heroicons/react/24/outline/MapPinIcon";
 
@@ -61,16 +61,7 @@ export const HighlightedEventSection = ({ event }: Props) => {
           </Popover>
           <p className="inline-flex items-center space-x-1 text-sm  text-white">
             <CalendarIcon className="h-5 w-5" />
-            <span>
-              {event.startDate &&
-                format(
-                  parseISO(event.startDate || ""),
-                  "dd LLLL 'de' yyyy 'às' K:mm'h'",
-                  {
-                    locale: ptBR,
-                  }
-                )}
-            </span>
+            <StartDate startDate={event.startDate} />
           </p>
         </div>
         <h2 className="mb-2 text-center text-2xl font-semibold text-white sm:text-5xl md:text-6xl ">

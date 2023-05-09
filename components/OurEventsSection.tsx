@@ -1,8 +1,7 @@
 import { Event } from "@/types/event";
-import { format, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import Link from "next/link";
 
+import { StartDate } from "./StartDate";
 import { SpinIcon } from "./SpinIcon";
 
 type Props = {
@@ -31,14 +30,7 @@ export const OurEventsSection = ({
                 <li key={id} className="space-y-2 py-4">
                   <div>
                     <p className="mb-2 inline-flex items-center space-x-1 text-sm  text-gray-600">
-                      {startDate &&
-                        format(
-                          parseISO(startDate || ""),
-                          "dd LLLL 'de' yyyy 'às' K:mm'h'",
-                          {
-                            locale: ptBR,
-                          }
-                        )}
+                      <StartDate startDate={startDate} />
                     </p>
                     <h4 className="text-xl text-gray-600">
                       <Link href="#">{title}</Link>

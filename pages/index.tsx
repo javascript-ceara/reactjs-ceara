@@ -1,4 +1,6 @@
 import { InferGetStaticPropsType } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import { getCommunity } from "@/api/operations/getCommunity";
 import { getEvents } from "@/api/operations/getEvents";
@@ -9,9 +11,11 @@ import { getPresentations } from "@/api/operations/getPresentations";
 
 import { HomePage } from "@/components/HomePage";
 import { OurEventsSectionContainer } from "@/containers/OurEventsSectionContainer";
-import { EventOrder, PersonOrder } from "@/schema";
 
 import { deleteUndefined } from "@/utils/deleteUndefined";
+import { pageview } from "@/utils/ga";
+
+import { EventOrder, PersonOrder } from "@/schema";
 
 export default function Home({
   events,
@@ -20,6 +24,20 @@ export default function Home({
   organizers,
   partners,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.events.on("routeChangeComplete", (url) => {
+      pageview(url);
+    });
+
+    return () => {
+      router.events.off("routeChangeComplete", (url) => {
+        pageview(url);
+      });
+    };
+  }, [router.events]);
+
   return (
     <div>
       <HomePage
