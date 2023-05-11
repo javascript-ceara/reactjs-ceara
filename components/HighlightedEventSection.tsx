@@ -37,13 +37,19 @@ export const HighlightedEventSection = ({ event }: Props) => {
                   <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-xs -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-sm">
                     <div className="space-y-4 overflow-hidden rounded-lg border border-slate-200 bg-white p-4 shadow-lg">
                       <address className="relative">
-                        <p className="mb-2 text-sm font-medium not-italic text-gray-500">
-                          {event.placeName}
-                        </p>
                         <p className="text-sm text-gray-600">
                           {event.placeAddress}
                         </p>
                       </address>
+                      {event.isAnOnlineEvent && (
+                        <a
+                          href={"https://discord.gg/AxegbMbgD3"}
+                          target="_blank"
+                          className="inline-block text-sm font-semibold text-sky-700"
+                        >
+                          Entrar no Discord
+                        </a>
+                      )}
                       {!event.isAnOnlineEvent && (
                         <a
                           href={`https://www.google.com/maps/search/${event.placeName}`}

@@ -12,7 +12,7 @@ export const StartDate = ({ startDate }: Props) => {
   useEffect(() => {
     if (startDate) {
       setDate(
-        format(parseISO(startDate), "dd LLLL 'de' yyyy 'às' K:mm'h'", {
+        format(parseISO(startDate), "dd LLLL 'de' yyyy 'às' k:mm'h'", {
           locale: ptBR,
         })
       );
