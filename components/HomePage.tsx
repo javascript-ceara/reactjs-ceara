@@ -28,7 +28,7 @@ export const HomePage = ({
   return (
     <>
       <Head>
-        <title>React Ceará</title>
+        <title>React Ceará - Comunidade cearense de React</title>
       </Head>
       <div>
         <Header />
