@@ -1,8 +1,13 @@
 import { Event } from "@/types/event";
-import Link from "next/link";
+import { Presentation } from "@/types/presentation";
 
-import { StartDate } from "./StartDate";
+import { getPersonById } from "@/api/operations/getPersonById";
+import { getPresentations } from "@/api/operations/getPresentations";
+import { Disclosure } from "@headlessui/react";
+import { useState } from "react";
+import { PresentationItem } from "./PresentationItem";
 import { SpinIcon } from "./SpinIcon";
+import { StartDate } from "./StartDate";
 
 type Props = {
   events: Event[];
@@ -17,6 +22,49 @@ export const OurEventsSection = ({
   isLoadingEvents,
   hasNoMoreEventsToLoad,
 }: Props) => {
+  const [eventPresentations, setEventPresentations] = useState<{
+    [eventId: string]: Presentation[];
+  }>({});
+  const [isLoadingPresentations, setIsLoadingPresentations] = useState(false);
+
+  const loadEventPresentations = async (
+    eventId: string,
+    presentationIds: (string | undefined)[]
+  ) => {
+    try {
+      let presentations = await getPresentations({
+        where: {
+          sys: {
+            id_in: presentationIds.filter(Boolean),
+          },
+        },
+      });
+
+      setIsLoadingPresentations(true);
+      presentations = await Promise.all(
+        presentations.map(async (presentation) => {
+          if (presentation.author?.id) {
+            const author = await getPersonById(presentation.author.id);
+            return {
+              ...presentation,
+              author,
+            };
+          }
+          return presentation;
+        })
+      );
+
+      setEventPresentations((prevEventPresentations) => ({
+        ...prevEventPresentations,
+        [eventId]: presentations,
+      }));
+      setIsLoadingPresentations(false);
+    } catch (error) {
+      console.error("Erro ao carregar apresentações do evento:", error);
+    } finally {
+      setIsLoadingPresentations(false);
+    }
+  };
   return (
     <section id="events" className="bg-gray-100">
       <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
@@ -25,19 +73,55 @@ export const OurEventsSection = ({
         </h2>
         {events.length ? (
           <ul className="space-y-2 divide-y-2 divide-gray-200">
-            {events.map(({ id, title, resume, startDate }) => {
+            {events.map(({ id, title, resume, startDate, presentations }) => {
+              const presentationsForEvent = eventPresentations[id ?? ""] || [];
               return (
-                <li key={id} className="space-y-2 py-4">
-                  <div>
-                    <p className="mb-2 inline-flex items-center space-x-1 text-sm  text-gray-600">
-                      <StartDate startDate={startDate} />
-                    </p>
-                    <h4 className="text-xl text-gray-600">
-                      <Link href="#">{title}</Link>
-                    </h4>
-                  </div>
-                  <p className="text-sm text-gray-600">{resume}</p>
-                </li>
+                <Disclosure key={id}>
+                  <li className="space-y-2 py-4">
+                    <div>
+                      <p className="mb-2 inline-flex items-center space-x-1 text-sm  text-gray-600">
+                        <StartDate startDate={startDate} />
+                      </p>
+                      <Disclosure.Button
+                        onClick={() =>
+                          presentations &&
+                          loadEventPresentations(
+                            id ?? "",
+                            presentations?.map(
+                              (presentation) => presentation.id
+                            )
+                          )
+                        }
+                        className="flex w-fit text-start"
+                      >
+                        <h4 className="text-xl text-gray-600">{title}</h4>
+                      </Disclosure.Button>
+                    </div>
+                    <p className="text-sm text-gray-600">{resume}</p>
+                    <Disclosure.Panel>
+                      {presentationsForEvent.length !== 0 && (
+                        <p className="mt-4 text-center text-sky-700">
+                          Apresentações
+                        </p>
+                      )}
+                      <ul className="text-gray-500">
+                        {isLoadingPresentations ? (
+                          <span>Carregando apresentações...</span>
+                        ) : (
+                          <>
+                            {presentationsForEvent.length ? (
+                              <PresentationItem
+                                eventsPresentation={presentationsForEvent}
+                              />
+                            ) : (
+                              <span>Sem apresentações</span>
+                            )}
+                          </>
+                        )}
+                      </ul>
+                    </Disclosure.Panel>
+                  </li>
+                </Disclosure>
               );
             })}
           </ul>
