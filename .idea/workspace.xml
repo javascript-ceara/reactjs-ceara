@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30c384c6-4800-4ccc-bd85-0da4fc2ca255" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/OurEventsSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/OurEventsSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +67,7 @@
       <workItem from="1682263799585" duration="1486000" />
       <workItem from="1682265441061" duration="1288000" />
       <workItem from="1682270862309" duration="878000" />
+      <workItem from="1683929285057" duration="623000" />
     </task>
     <servers />
   </component>
