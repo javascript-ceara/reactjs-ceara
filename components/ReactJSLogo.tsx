@@ -1,7 +1,13 @@
 type Props = {
+  /**
+   * Classe do componente
+   */
   className?: string;
 };
 
+/**
+ * Componente capaz de mostrar a logo do React
+ */
 export const ReactJSLogo = ({ className }: Props) => {
   return (
     <svg

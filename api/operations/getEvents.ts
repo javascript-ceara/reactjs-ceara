@@ -43,7 +43,7 @@ export const getEvents = async (
             highlighted
             isAnOnlineEvent
             cfpLink
-            presentationCollection {
+            presentationsCollection {
               items {
                 sys {
                   id
@@ -75,7 +75,7 @@ export const getEvents = async (
           cfpLink: item?.cfpLink,
           highlighted: item?.highlighted,
           isAnOnlineEvent: item?.isAnOnlineEvent,
-          presentations: item?.presentationCollection?.items.map<Presentation>(
+          presentations: item?.presentationsCollection?.items.map<Presentation>(
             (item) => ({
               id: item?.sys.id,
             })
