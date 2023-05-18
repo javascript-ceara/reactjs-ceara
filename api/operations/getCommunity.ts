@@ -15,13 +15,6 @@ export const getCommunity = async (): Promise<Community | undefined> => {
           text {
             json
           }
-          organizersCollection {
-            items {
-              sys {
-                id
-              }
-            }
-          }
         }
       }
     }
@@ -34,11 +27,6 @@ export const getCommunity = async (): Promise<Community | undefined> => {
       id: community.sys.id,
       title: community.title,
       text: community.text,
-      organizers: community.organizersCollection?.items.map((item) => {
-        return {
-          id: item?.sys.id,
-        };
-      }),
     };
   }
 };
