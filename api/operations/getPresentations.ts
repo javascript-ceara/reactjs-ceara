@@ -33,6 +33,22 @@ export const getPresentations = async (
               sys {
                 id
               }
+              name
+              jobTitle
+              bio
+              isOrganizer
+              github
+              company
+              avatar {
+                title
+                url
+                description
+                contentType
+                fileName
+                size
+                width
+                height
+              }
             }
           }
         }
@@ -47,6 +63,13 @@ export const getPresentations = async (
         id: item?.sys.id,
         author: {
           id: item?.author?.sys.id,
+          name: item?.author?.name,
+          jobTitle: item?.author?.jobTitle,
+          bio: item?.author?.bio,
+          isOrganizer: item?.author?.isOrganizer,
+          github: item?.author?.github,
+          company: item?.author?.company,
+          avatar: item?.author?.avatar,
         },
         description: item?.description,
         title: item?.title,
