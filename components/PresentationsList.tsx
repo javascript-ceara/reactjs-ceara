@@ -64,12 +64,12 @@ export const PresentationsList = ({ presentations, palette }: Props) => {
       {!presentations.length ? (
         <p
           className={twMerge(
-            "text-center text-sm",
+            "flex h-52 items-center justify-center text-center",
             palette === "gray" && "text-gray-600",
             palette === "white" && "text-white"
           )}
         >
-          As palestras aparecerão aqui
+          <span>As palestras aparecerão aqui</span>
         </p>
       ) : null}
     </div>

@@ -40,12 +40,12 @@ export const HighlightedEventSection = ({ event }: Props) => {
           </span>
         </h2>
 
-        {event.presentations?.length && (
+        {event.presentations ? (
           <PresentationsList
             palette="white"
             presentations={event.presentations}
           />
-        )}
+        ) : null}
 
         <div className="mb-8 flex items-center justify-center px-12 py-4">
           <a
