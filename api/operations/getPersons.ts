@@ -34,7 +34,14 @@ export const getPersons = async (
             isOrganizer
             bio
             avatar {
+              title
               url
+              description
+              contentType
+              fileName
+              size
+              width
+              height
             }
           }
         }
