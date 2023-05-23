@@ -3,8 +3,8 @@ import { useState } from "react";
 import { getEvents } from "@/api/operations/getEvents";
 import { event } from "@/utils/ga";
 
-import { Event } from "@/types/event";
 import { EventOrder } from "@/schema";
+import { Event } from "@/types/event";
 
 export const useLoadMoreEvents = (initialEvents: Event[]) => {
   const [events, setEvents] = useState<Event[]>(initialEvents);
