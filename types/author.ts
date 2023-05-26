@@ -5,4 +5,8 @@ export type Author = Partial<{
   name: string;
   bio: string;
   avatar: Avatar;
+  jobTitle: string;
+  isOrganizer: boolean;
+  github: string;
+  company: string;
 }>;

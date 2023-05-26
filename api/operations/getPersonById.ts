@@ -15,15 +15,22 @@ export const getPersonById = async (
           }
           name
           jobTitle
+          bio
+          isOrganizer
+          github
           company
           location
-          website
-          github
           linkedin
-          isOrganizer
-          bio
+          website
           avatar {
+            title
+            size
+            width
+            height
+            description
+            fileName
             url
+            contentType
           }
         }
       }
