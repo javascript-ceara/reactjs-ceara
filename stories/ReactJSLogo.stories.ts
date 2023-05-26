@@ -28,4 +28,4 @@ export const ReactJSLogo_Component_Green = {
   args: {
     className: 'h-12 text-green-600 sm:h-16',
   },
-};
+}
