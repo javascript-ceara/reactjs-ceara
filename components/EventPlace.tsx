@@ -50,11 +50,11 @@ export const EventPlace = ({
                 </address>
                 {isAnOnlineEvent && (
                   <a
-                    href={"https://discord.gg/AxegbMbgD3"}
+                    href={"https://www.youtube.com/@reactjsceara"}
                     target="_blank"
                     className="inline-block text-sm font-semibold text-sky-700"
                   >
-                    Entrar no Discord
+                    Acessar canal no YouTube
                   </a>
                 )}
                 {!isAnOnlineEvent && (
