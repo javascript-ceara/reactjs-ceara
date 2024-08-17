@@ -24,9 +24,7 @@ export const OurEventsSection = ({
   return (
     <section id="events" className="bg-gray-100">
       <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
-        <h2 className="mb-8 text-center text-2xl text-sky-700">
-          Nossos eventos
-        </h2>
+        <h2 className="mb-8 text-center text-2xl">Nossos eventos</h2>
         <EventsList
           events={events}
           presentationsListRender={presentationsListRender}

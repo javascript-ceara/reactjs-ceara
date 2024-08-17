@@ -13,7 +13,7 @@ type Props = {
 
 export const HighlightedEventSection = ({ event }: Props) => {
   return (
-    <section className="bg-sky-800">
+    <section className="bg-slate-700">
       <div className="px-8 py-16 md:mx-auto md:max-w-3xl">
         <div className="mb-8 flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
           <EventPlace
@@ -60,7 +60,7 @@ export const HighlightedEventSection = ({ event }: Props) => {
         <a
           href={event.registrationLink}
           target="_blank"
-          className="font block rounded-md bg-sky-700 px-12 py-4 text-center text-lg font-semibold uppercase text-white"
+          className="font block rounded-md bg-yellow-400 px-12 py-4 text-center text-lg font-semibold uppercase text-slate-700"
         >
           Inscreva-se
         </a>

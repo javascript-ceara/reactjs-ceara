@@ -124,7 +124,7 @@ export const EventsListItem = ({
               <a
                 href={registrationLink || "#"}
                 target="_blank"
-                className="font block rounded-md bg-sky-700 px-12 py-4 text-center text-lg font-semibold uppercase text-white"
+                className="font block rounded-md bg-yellow-400 px-12 py-4 text-center text-lg font-semibold uppercase text-slate-700"
               >
                 Inscreva-se
               </a>

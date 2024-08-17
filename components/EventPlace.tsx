@@ -52,7 +52,7 @@ export const EventPlace = ({
                   <a
                     href={"https://www.youtube.com/@reactjsceara"}
                     target="_blank"
-                    className="inline-block text-sm font-semibold text-sky-700"
+                    className="inline-block text-sm font-semibold underline"
                   >
                     Acessar canal no YouTube
                   </a>

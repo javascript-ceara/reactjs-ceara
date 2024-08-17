@@ -23,7 +23,7 @@ export const CommunityText = ({ text }: Props) => {
       hyperlink: (node, children) => {
         return (
           <a
-            className="text-blue-400"
+            className="underline"
             href={node.data.uri}
             target="_blank"
             rel="noopener noreferrer"

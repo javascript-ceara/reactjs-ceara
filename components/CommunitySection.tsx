@@ -13,7 +13,7 @@ export const CommunitySection = ({ community, organizers }: Props) => {
   return (
     <section id="community">
       <div className="px-8 py-16 lg:mx-auto lg:max-w-3xl lg:px-0">
-        <h2 className="mb-8 text-center text-2xl text-sky-700">A comunidade</h2>
+        <h2 className="mb-8 text-center text-2xl">A comunidade</h2>
         {community && <CommunityText text={community.text?.json} />}
         <h3 className="mb-8 text-center text-sm uppercase text-slate-500">
           Organizadores
@@ -60,9 +60,9 @@ export const CommunitySection = ({ community, organizers }: Props) => {
           Quer contribuir com a comunidade?
         </p>
         <p className="text-center text-gray-700">
-          <a href="https://www.instagram.com/reactjsceara/" target="_blank">
+          <a href="https://www.instagram.com/javascriptceara/" target="_blank">
             Envie um direct para{" "}
-            <span className="text-pink-700">instagram.com/reactjsceara</span>
+            <span className="text-pink-700">instagram.com/javascriptceara</span>
           </a>
         </p>
       </div>

@@ -28,7 +28,7 @@ export const HomePage = ({
   return (
     <>
       <Head>
-        <title>React Ceará - Comunidade cearense de React</title>
+        <title>JavaScript Ceará - Comunidade cearense de JavaScript</title>
       </Head>
       <div>
         <Header />
